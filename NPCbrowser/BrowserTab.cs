@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Web;
-using System.IO;
-using System.Diagnostics;
-using NPCbrowser.Properties;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using NPC_Browser_PRO.Controls;
+using NPC_Browser_PRO.Properties;
 
-namespace NPCbrowser
+namespace NPC_Browser_PRO
 {
     public partial class BrowserTab: Form
     {
-        //Hello this it the actually important code, please do not judge. thank you.
-        //Coded in like 3 days with a bit of help from stackoverflow.
-        //Enjoy mate.
-
-
         public static BrowserTab Instance2;
 
         public BrowserTab()
@@ -32,7 +29,7 @@ namespace NPCbrowser
             webView21.Location = new Point(0, 35);
             webView21.Size = new Size(this.Width, this.Height - 35);
             webView21.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-
+            modernTextBox1.Size = new Size(panel1.Width - 230, 26);
             Instance2 = this;
         }
 
@@ -41,7 +38,8 @@ namespace NPCbrowser
             await webView21.EnsureCoreWebView2Async();
             webView21.CoreWebView2.DocumentTitleChanged += CoreWebView2_DocumentTitleChanged;
             webView21.CoreWebView2.Navigate("file:///D:\\Code\\BrowserCustomPages\\home.html");
-            siticoneTextBox1.Text = "npc://home";
+            modernTextBox1.RemovePlaceholder(sender, e); //Makes placeholder text actually work
+            modernTextBox1.SetPlaceholderText("npc://home"); //Makes placeholder text actually work
 
             ThemeManager();
         }
@@ -73,7 +71,7 @@ namespace NPCbrowser
                 webView21.Source = new Uri("https://www.duckduckgo.com");
             }
 
-            siticoneTextBox1.Text = "";
+            modernTextBox1.TextBoxText = "";
         }
 
         private void BackButton_Click(object sender, EventArgs e)
@@ -86,15 +84,18 @@ namespace NPCbrowser
             webView21.GoForward();
         }
 
-        private void siticoneTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        private void Urlbar(string input)
         {
-            e.Handled = false;
-            if (e.KeyChar == 13 && siticoneTextBox1.Text.StartsWith("https://"))
+            if (input == null || input == "" || input.Contains("npc://home"))
+            {
+                webView21.CoreWebView2.Navigate("file:///D:\\Code\\BrowserCustomPages\\home.html");
+            }
+
+            else if (input.StartsWith("https://"))
             {
                 try
                 {
-                    webView21.CoreWebView2.Navigate(siticoneTextBox1.Text);
-                    e.Handled = true;
+                    webView21.CoreWebView2.Navigate("siticoneTextBox1.Text");
                 }
 
                 catch (Exception ex)
@@ -103,56 +104,30 @@ namespace NPCbrowser
                 }
             }
 
-            else if (e.KeyChar == 13 && siticoneTextBox1.Text.Contains("npc://home"))
-            {
-                try
-                {
-                    webView21.CoreWebView2.Navigate("file:///D:\\Code\\BrowserCustomPages\\home.html");
-                    e.Handled = true;
-                }
-
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex);
-                }
-            }
-
-            else if (e.KeyChar == 13 && siticoneTextBox1.Text.Contains("npc://"))
+            else if (input.Contains("npc://"))
             {
                 try
                 {
                     webView21.CoreWebView2.Navigate("file:///D:\\Code\\BrowserCustomPages\\npc.html");
-                    e.Handled = true;
                 }
 
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex);
-                }
+                catch (Exception ex) { MessageBox.Show("Error: " + ex); }
             }
 
-            else if (e.KeyChar == 13)
+            else
             {
                 try
                 {
                     if (Settings.Default.GoogleSearch == true)
                     {
-                        webView21.CoreWebView2.Navigate($"https://www.google.com/search?q={HttpUtility.UrlDecode(siticoneTextBox1.Text)}");
+                        webView21.CoreWebView2.Navigate($"https://www.google.com/search?q={HttpUtility.UrlDecode(modernTextBox1.TextBoxText)}");
+                        return;
                     }
-
-                    else
-                    {
-                        webView21.CoreWebView2.Navigate($"https://duckduckgo.com/?q={HttpUtility.UrlEncode(siticoneTextBox1.Text)}&atb=v443-1&ia=web");
-                    }
-
-                    e.Handled = true;
+                    webView21.CoreWebView2.Navigate($"https://duckduckgo.com/?q={HttpUtility.UrlEncode(modernTextBox1.TextBoxText)}&atb=v443-1&ia=web");
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex);
-                }
+
+                catch (Exception ex) { MessageBox.Show("Error: " + ex); }
             }
-            this.Text = webView21.CoreWebView2.DocumentTitle;
         }
 
         private void DownloadButton_Click(object sender, EventArgs e)
@@ -172,8 +147,9 @@ namespace NPCbrowser
             if (Settings.Default.DarkMode)
             {
                 panel1.BackColor = Color.FromArgb(40, 40, 40);
-                siticoneTextBox1.FillColor = Color.FromArgb(55, 55, 55);
-                siticoneTextBox1.ForeColor = Color.White;
+                modernTextBox1.BackColor = Color.FromArgb(40, 40, 40);
+                modernTextBox1.BackgroundColor = Color.FromArgb(40, 40, 40);
+                modernTextBox1.TextColor = Color.White;
                 MoreButton.Image = Resources.more2;
                 BackButton.Image = Resources.arrow2;
                 ForwardButton.Image = Resources.right_arrow2;
@@ -184,14 +160,38 @@ namespace NPCbrowser
             else
             {
                 panel1.BackColor = Color.White;
-                siticoneTextBox1.FillColor = Color.FromArgb(230, 230, 230);
-                siticoneTextBox1.ForeColor = Color.FromArgb(125, 137, 149);
+                modernTextBox1.BackColor = Color.White;
+                modernTextBox1.BackgroundColor = Color.White;
+                modernTextBox1.TextColor = Color.FromArgb(125, 137, 149);
                 MoreButton.Image = Resources.more;
                 BackButton.Image = Resources.arrow;
                 ForwardButton.Image = Resources.right_arrow;
                 HomeButton.Image = Resources.home;
                 DownloadButton.Image = Resources.downloads;
             }
+        }
+
+        private void modernTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                try
+                {
+                    Urlbar(modernTextBox1.TextBoxText);
+                    e.Handled = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex);
+                }
+            }
+
+            this.Text = webView21.CoreWebView2.DocumentTitle;
+        }
+
+        private void BrowserTab_SizeChanged(object sender, EventArgs e)
+        {
+            modernTextBox1.Size = new Size(panel1.Width - 230, 26);
         }
     }
 }

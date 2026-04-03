@@ -1,4 +1,8 @@
-﻿namespace NPCbrowser
+﻿using NPC_Browser_PRO.Controls;
+using System;
+using System.Drawing;
+
+namespace NPC_Browser_PRO
 {
     partial class BrowserTab
     {
@@ -31,7 +35,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserTab));
             this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.siticoneTextBox1 = new Siticone.Desktop.UI.WinForms.SiticoneTextBox();
+            this.modernTextBox1 = new NPC_Browser_PRO.Controls.ModernTextBox();
             this.MoreButton = new System.Windows.Forms.PictureBox();
             this.DownloadButton = new System.Windows.Forms.PictureBox();
             this.ForwardButton = new System.Windows.Forms.PictureBox();
@@ -59,8 +63,8 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.panel1.Controls.Add(this.siticoneTextBox1);
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.modernTextBox1);
             this.panel1.Controls.Add(this.MoreButton);
             this.panel1.Controls.Add(this.DownloadButton);
             this.panel1.Controls.Add(this.ForwardButton);
@@ -72,35 +76,28 @@
             this.panel1.Size = new System.Drawing.Size(800, 35);
             this.panel1.TabIndex = 1;
             // 
-            // siticoneTextBox1
+            // modernTextBox1
             // 
-            this.siticoneTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.siticoneTextBox1.BorderRadius = 10;
-            this.siticoneTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.siticoneTextBox1.DefaultText = "";
-            this.siticoneTextBox1.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.siticoneTextBox1.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.siticoneTextBox1.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.siticoneTextBox1.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.siticoneTextBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.siticoneTextBox1.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.siticoneTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.siticoneTextBox1.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.siticoneTextBox1.Location = new System.Drawing.Point(134, 4);
-            this.siticoneTextBox1.Name = "siticoneTextBox1";
-            this.siticoneTextBox1.PasswordChar = '\0';
-            this.siticoneTextBox1.PlaceholderText = "";
-            this.siticoneTextBox1.SelectedText = "";
-            this.siticoneTextBox1.Size = new System.Drawing.Size(551, 28);
-            this.siticoneTextBox1.TabIndex = 5;
-            this.siticoneTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.siticoneTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.siticoneTextBox1_KeyPress);
+            this.modernTextBox1.BackColor = System.Drawing.Color.White;
+            this.modernTextBox1.BackgroundColor = System.Drawing.Color.White;
+            this.modernTextBox1.BorderColor = System.Drawing.Color.Gray;
+            this.modernTextBox1.BorderRadius = 10;
+            this.modernTextBox1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modernTextBox1.Location = new System.Drawing.Point(133, 5);
+            this.modernTextBox1.Multiline = false;
+            this.modernTextBox1.Name = "modernTextBox1";
+            this.modernTextBox1.Padding = new System.Windows.Forms.Padding(10);
+            this.modernTextBox1.PlaceholderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.modernTextBox1.PlaceholderText = "npc://home";
+            this.modernTextBox1.Size = new System.Drawing.Size(570, 26);
+            this.modernTextBox1.TabIndex = 5;
+            this.modernTextBox1.TextBoxText = "";
+            this.modernTextBox1.TextColor = System.Drawing.Color.White;
+            this.modernTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.modernTextBox1_KeyPress);
             // 
             // MoreButton
             // 
             this.MoreButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.MoreButton.Image = global::NPCbrowser.Properties.Resources.more;
             this.MoreButton.Location = new System.Drawing.Point(754, 7);
             this.MoreButton.Name = "MoreButton";
             this.MoreButton.Size = new System.Drawing.Size(34, 21);
@@ -112,7 +109,6 @@
             // DownloadButton
             // 
             this.DownloadButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.DownloadButton.Image = global::NPCbrowser.Properties.Resources.downloads;
             this.DownloadButton.Location = new System.Drawing.Point(721, 7);
             this.DownloadButton.Name = "DownloadButton";
             this.DownloadButton.Size = new System.Drawing.Size(34, 21);
@@ -123,7 +119,6 @@
             // 
             // ForwardButton
             // 
-            this.ForwardButton.Image = global::NPCbrowser.Properties.Resources.right_arrow;
             this.ForwardButton.Location = new System.Drawing.Point(80, 9);
             this.ForwardButton.Name = "ForwardButton";
             this.ForwardButton.Size = new System.Drawing.Size(34, 21);
@@ -165,6 +160,7 @@
             this.Name = "BrowserTab";
             this.Text = "New Tab";
             this.Load += new System.EventHandler(this.BrowserTab_Load);
+            this.SizeChanged += new System.EventHandler(this.BrowserTab_SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MoreButton)).EndInit();
@@ -185,6 +181,6 @@
         private System.Windows.Forms.PictureBox BackButton;
         private System.Windows.Forms.PictureBox MoreButton;
         private System.Windows.Forms.PictureBox DownloadButton;
-        private Siticone.Desktop.UI.WinForms.SiticoneTextBox siticoneTextBox1;
+        private ModernTextBox modernTextBox1;
     }
 }

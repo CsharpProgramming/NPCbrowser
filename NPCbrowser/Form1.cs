@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Web.WebView2; //Import web browser extension
 using EasyTabs;
-using NPC_Browser_PRO.Properties;
+using NPCbrowser.Properties;
 
-namespace NPC_Browser_PRO
+namespace NPCbrowser
 {
     public partial class Form1: TitleBarTabs
     {

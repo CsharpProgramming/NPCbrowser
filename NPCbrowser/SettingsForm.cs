@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using NPC_Browser_PRO.Properties;
+using NPCbrowser.Properties;
 
-namespace NPC_Browser_PRO
+namespace NPCbrowser
 {
     public partial class SettingsForm: Form
     {

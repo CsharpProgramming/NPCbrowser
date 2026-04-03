@@ -1,4 +1,4 @@
-﻿namespace NPC_Browser_PRO
+﻿namespace NPCbrowser
 {
     partial class SettingsForm
     {

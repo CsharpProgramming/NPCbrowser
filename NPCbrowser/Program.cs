@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NPC_Browser_PRO
+namespace NPCbrowser
 {
     static class Program
     {
@@ -25,6 +25,7 @@ namespace NPC_Browser_PRO
             {
                 Content = new BrowserTab()
             });
+
             form1.SelectedTabIndex = 0;
             TitleBarTabsApplicationContext applicationContext = new TitleBarTabsApplicationContext();
             applicationContext.Start(form1);

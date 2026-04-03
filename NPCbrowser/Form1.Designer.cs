@@ -1,5 +1,6 @@
-﻿using NPC_Browser_PRO.Properties;
-namespace NPC_Browser_PRO
+﻿using NPCbrowser.Properties;
+
+namespace NPCbrowser
 {
     partial class Form1
     {
@@ -22,7 +23,7 @@ namespace NPC_Browser_PRO
         }
 
         #region Windows Form Designer generated code
-
+        
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
